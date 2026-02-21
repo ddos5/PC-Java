@@ -16,4 +16,8 @@ public class PCBuild implements ComponentAdder{
     public void addComponent(Component c){
         components.add(c);
     }
+
+    public List<Component> getArrayList(){
+        return components;
+    }
 }
