@@ -8,4 +8,7 @@ public class Storage extends Component{
         this.capacity = capacity;
         this.isSSD = isSSD;
     }
+    public Storage(){
+
+    }
 }
