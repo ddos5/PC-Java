@@ -12,6 +12,12 @@ public abstract class Component {
         this.price = price;
         this.basePowerConsumption = basePowerConsumption;
     }
+    public Component(){}
+    public Component(String brand, String model, int price){
+        this.brand = brand;
+        this.model = model;
+        this.price = price;
+    }
 
     /*GETTERS AND SETTERS*/
 
