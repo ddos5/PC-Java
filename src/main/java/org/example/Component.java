@@ -4,9 +4,9 @@ public abstract class Component {
     private String brand;
     private String model;
     private int price;
-    private int basePowerConsumption;
+    protected double basePowerConsumption;
 
-    public Component(String brand, String model, int price, int basePowerConsumption){
+    public Component(String brand, String model, int price, double basePowerConsumption){
         this.brand = brand;
         this.model = model;
         this.price = price;
@@ -24,7 +24,7 @@ public abstract class Component {
     public int getPrice(){
         return price;
     }
-    public int getBasePowerConsumption(){
+    public double getBasePowerConsumption(){
         return basePowerConsumption;
     }
     public void setBrand(String brand){
@@ -36,7 +36,7 @@ public abstract class Component {
     public void setPrice(int price){
         this.price = price;
     }
-    public void setBasePowerConsumption(int basePowerConsumption){
+    public void setBasePowerConsumption(double basePowerConsumption){
         this.basePowerConsumption = basePowerConsumption;
     }
 
