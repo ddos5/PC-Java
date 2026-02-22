@@ -12,29 +12,36 @@ public class Main {
         PowerSupply psu = new PowerSupply("Be queit!", "POWER 11", 70);
         psu.setMaxWattage(650);
         PCBuild computer = new PCBuild();
-        computer.addComponent(gpu);
-        computer.addComponent(ssd);
-        computer.addComponent(psu);
-        if(motherboard.compareSocket(cpu))
-            computer.addComponent(cpu);
-        else
-            computer.addComponent(ryzen);
-        computer.addComponent(motherboard);
-        gpu.boostPerformance(1.2);
-        cpu.boostPerformance(1.15);
+
+        try{
+            computer.setPowerSupply(psu);
+            computer.addComponent(gpu);
+            computer.addComponent(ssd);
+            computer.addComponent(psu);
+            computer.addComponent(motherboard);
+
+            if(motherboard.compareSocket(cpu))
+                computer.addComponent(cpu);
+            else
+                computer.addComponent(ryzen);
+            gpu.boostPerformance(1.2, computer);
+            cpu.boostPerformance(1.15, computer);
+            System.out.println("Total power of computer now is: " + computer.calculateTotalPower());
+        }catch(PowerOverloadException e){
+            System.out.println("Needed PSU for this computer must have " + String.format("%.2f", e.getRequiredPower()) + "W");
+            System.out.println("But your PSU limit is only " + psu.getMaxWattage() + "W");
+        }
+
+
 
 
         List<Component> computerarr = computer.getArrayList();
         for(Component c : computerarr){
-            if(c instanceof CPU) {
-                CPU tempCpu = (CPU) c;
+            if(c instanceof CPU tempCpu) {
                 System.out.println(tempCpu.getInfo());
             }
         }
 
-        System.out.println("Total power of computer now is: " + computer.calculateTotalPower());
-        if(computer.calculateTotalPower() > psu.getMaxWattage())
-            System.out.println("SYSTEM FAILURE: PSU overload! Computer turned off.");
 
     }
 }
