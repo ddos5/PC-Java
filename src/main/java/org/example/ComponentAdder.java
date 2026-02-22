@@ -1,5 +1,5 @@
 package org.example;
 
 public interface ComponentAdder {
-    public void addComponent(Component c);
+    public void addComponent(Component c) throws PowerOverloadException;
 }
