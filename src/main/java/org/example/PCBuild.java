@@ -23,11 +23,26 @@ public class PCBuild implements ComponentAdder{
         return sum;
     }
     @Override
-    public void addComponent(Component c) throws PowerOverloadException{
+    public void addComponent(Component c) throws PowerOverloadException, IncompatibleSocketException{
         double futurePower = calculateTotalPower() + c.getBasePowerConsumption();
-        if(futurePower > psu.getMaxWattage())
+        if (futurePower > psu.getMaxWattage())
             throw new PowerOverloadException("This method creates new exception!", futurePower);
+
+        if(c instanceof CPU newCpu){
+            for(Component comp : components){
+                if(comp instanceof Motherboard mb)
+                    mb.installCpu(newCpu);
+            }
+        }
         components.add(c);
+    }
+
+    public CPU getInstalledCPU(){
+        for(Component c : components){
+            if(c instanceof CPU neeededCpu)
+                return neeededCpu;
+        }
+        return null;
     }
 
     public List<Component> getArrayList(){
