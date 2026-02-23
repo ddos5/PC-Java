@@ -35,11 +35,13 @@ public class CPU extends Component implements Overclockable{
                 System.out.println("WARNING: Thermal throttling! CPU might be damaged!");
         }
     }
-
     /*getters setters*/
 
     public int getCores(){
         return cores;
+    }
+    public void setCores(int cores){
+        this.cores = cores;
     }
     public double getFrequency(){
         return frequency;
